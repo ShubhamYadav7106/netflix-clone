@@ -1,7 +1,11 @@
-
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  
+  const navigate=useNavigate();
+  const onSignInClickHandler =(e)=>{
+    e.preventDefault();
+    navigate("/deshboard");
+  }
   return(
     <div className="login">
       <div className="holder">
@@ -18,7 +22,7 @@ const Login = () => {
             className="form-control"
             type="password" 
             placeholder="Password"/>
-          <button className="btn btn-danger btn-block" >Sign In</button>
+          <button className="btn btn-danger btn-block" onClick={onSignInClickHandler}>Sign In</button>
           <br/>
            <div className="form-check">
             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
@@ -31,7 +35,7 @@ const Login = () => {
         <br/>
      <div className="login-form-other">
           <div className="login-signup-now">
-          New to Netflix? &nbsp;
+          New to Netflix? &nbsp;{/* connects into one line -non breaking space*/}
             <a className="" target="_self" href="/">Sign up now
             </a>
           </div>

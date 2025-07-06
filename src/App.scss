@@ -1,6 +1,7 @@
 
 .nav__logo{
   width: 100px;
+cursor: pointer;
 }
 
 // Top nav bar
@@ -55,6 +56,8 @@
       padding: .2rem 1rem;
       border-radius: 0;
     }
+   
+    
 
     button{
       font-size: 1.5rem;
@@ -63,6 +66,11 @@
       height: 54px;
       font-weight: normal;
       background: #d12727;
+      
+    }
+    button:hover{
+      
+      background: #ad1616;
       
     }
   }
@@ -82,6 +90,8 @@
     z-index: 1;
     margin-top: 100px;
     left: calc(50% - 225px);
+
+     
 
     input{
       background-color: #333;
@@ -156,6 +166,7 @@
     margin-right: 1rem;
     outline: none;
     padding: 0.5rem 2rem;
+
   
     
   }
@@ -195,6 +206,9 @@
     overflow-x: scroll;
     overflow-y: hidden;
     padding: 20px 0 20px 0;
+    img{
+      width: 200px;
+    }
   }
   
   .row__posters::-webkit-scrollbar {
