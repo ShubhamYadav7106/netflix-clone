@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Banner from './components/Banner'
 import List from './components/List'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 const App = () => {
   return (
     <React.Fragment>
@@ -29,6 +30,7 @@ const App = () => {
           }/>
         </Routes>
       </Router>
+      <ToastContainer/>
     </React.Fragment>
   );
 }

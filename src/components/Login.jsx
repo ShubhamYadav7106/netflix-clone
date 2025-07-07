@@ -1,10 +1,28 @@
 import { useNavigate } from "react-router-dom";
-
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./firebaseConfig";
+import { getAuth,signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { toast } from "react-toastify";
 const Login = () => {
+  const app=initializeApp(firebaseConfig);
   const navigate=useNavigate();
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+  const auth=getAuth();
+
   const onSignInClickHandler =(e)=>{
     e.preventDefault();
-    navigate("/deshboard");
+    signInWithEmailAndPassword(auth,email,password)
+    .then(auth=>{
+      if(auth){
+        navigate("/deshboard"); 
+      }
+    })
+  
+    .catch(error=>toast.error(error.message));
+    
+   
   }
   return(
     <div className="login">
@@ -14,12 +32,15 @@ const Login = () => {
         <form>
           <input 
             className="form-control" 
-         
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
             type="email" 
             placeholder="Email"/>
 
           <input 
             className="form-control"
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
             type="password" 
             placeholder="Password"/>
           <button className="btn btn-danger btn-block" onClick={onSignInClickHandler}>Sign In</button>
