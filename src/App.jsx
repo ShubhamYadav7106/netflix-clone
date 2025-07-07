@@ -19,7 +19,16 @@ const App = () => {
             </React.Fragment>
           }/>
           <Route path='/login' element={
+            <React.Fragment>
+              <Header/>
             <Login/>
+            </React.Fragment>
+          }/>
+          <Route path='/register' element={ 
+             <React.Fragment>
+              <Header/>
+            <Login/>
+            </React.Fragment>
           }/>
           <Route path='/deshboard' element={
             <React.Fragment>
