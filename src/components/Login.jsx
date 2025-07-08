@@ -4,6 +4,8 @@ import { firebaseConfig } from "./firebaseConfig";
 import { createUserWithEmailAndPassword, getAuth,signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { YupValidate } from "./YupValidate";
+import { useFormik } from "formik";
 const Login = () => {
   const app=initializeApp(firebaseConfig);
   const navigate=useNavigate();
@@ -18,6 +20,8 @@ const [emailUsed,setEmailUsed]=useState(false);
 
   const onSignInClickHandler =(e)=>{
     e.preventDefault();
+    const email = values.email;
+  const password = values.password;
     if(page){
        signInWithEmailAndPassword(auth,email,password)
     .then(auth=>{
@@ -43,8 +47,26 @@ const [emailUsed,setEmailUsed]=useState(false);
     }
    
    
+
+
+
+
   }
- 
+     const initialValues={
+            email:"",
+            password:"",
+        };
+const{values,handleSubmit,handleChange,handleBlur,errors,touched}=
+    useFormik({
+      initialValues,
+      validationSchema:YupValidate,
+      validateOnChange:true,
+      onSubmit:(values,action)=>{
+        console.warn(values)
+        action.resetForm();
+        toast.success("Submitted Successfully")
+      }
+    })
   useEffect(()=>{
     setUserExist(false);
     setEmailUsed(false);
@@ -55,20 +77,40 @@ const [emailUsed,setEmailUsed]=useState(false);
       <div className="holder">
         <h1 className="text-white">{page ? 'Sign In':'Register'}</h1>
         <br/>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input 
             className="form-control" 
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            
             type="email" 
-            placeholder="Email"/>
+            autoComplete='off'
+            name="email"
+            id="email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder="Email"/>{
+              
+                      touched.email && errors.email?(
+                        <p className='noData'>{errors.email}</p>
+                      ):null
+                    
+            }
 
           <input 
             className="form-control"
-            value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+        
+            name="password"
             type="password" 
+                value={values.password}
+            onChange={handleChange}
+            id="passworrd"
+            onBlur={handleBlur}
             placeholder="Password"/>
+            {
+               touched.password&&errors.password?(
+                        <p className='noData'>{errors.password}</p>
+                      ):null
+            }
           <button className="btn btn-danger btn-block" onClick={onSignInClickHandler}>{page?'Sign In' : 'Register'}</button>
           <br/>
            {

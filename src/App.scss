@@ -210,6 +210,13 @@ cursor: pointer;
       width: 200px;
     }
   }
+   form .noData{
+    margin-top: -13px;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 12px;
+    color: red;
+  }
   
   .row__posters::-webkit-scrollbar {
     display: none;
