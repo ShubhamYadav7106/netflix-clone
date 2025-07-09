@@ -94,10 +94,10 @@ cursor: pointer;
      
 
     input{
-      background-color: #333;
+      // background-color: #333;
       border: 0;
       margin-bottom: 20px;
-      color: #fff;
+      color: #000;
     }
     button{
         width: 100%;
@@ -112,6 +112,9 @@ cursor: pointer;
   }
   img{
     max-width: 100%;
+  }
+  form .noData{
+        color: #df4343;
   }
   .login-form-other{
     .login-signup-now {
@@ -210,13 +213,11 @@ cursor: pointer;
       width: 200px;
     }
   }
-   form .noData{
-    margin-top: -13px;
-    font-size: 15px;
-    text-align: left;
-    margin-left: 12px;
-    color: red;
-  }
+   
+  .holder input::placeholder {
+  color: #ff5555;   /* Apna color yahan set karein */
+  opacity: 1;       /* Optional: fully opaque */
+}
   
   .row__posters::-webkit-scrollbar {
     display: none;

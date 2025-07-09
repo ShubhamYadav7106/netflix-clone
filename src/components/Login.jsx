@@ -20,6 +20,10 @@ const [emailUsed,setEmailUsed]=useState(false);
 
   const onSignInClickHandler =(e)=>{
     e.preventDefault();
+    if (!values.email || !values.password) {
+    toast.error("Please fill all fields");
+    return;
+    }
     const email = values.email;
   const password = values.password;
     if(page){
@@ -111,7 +115,9 @@ const{values,handleSubmit,handleChange,handleBlur,errors,touched}=
                         <p className='noData'>{errors.password}</p>
                       ):null
             }
-          <button className="btn btn-danger btn-block" onClick={onSignInClickHandler}>{page?'Sign In' : 'Register'}</button>
+          <button className="btn btn-danger btn-block"
+          type="submit" 
+          onClick={onSignInClickHandler}>{page?'Sign In' : 'Register'}</button>
           <br/>
            {
             page && <div className="form-check">
